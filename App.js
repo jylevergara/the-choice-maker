@@ -1,19 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import DecisionScreen from './DecisionScreen';
+import HomeScreen from './HomeScreen';
+import OptionScreen from './OptionScreen';
+import QuestionScreen from './QuestionScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Noice</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const MainNavigator = createStackNavigator({
+    Home: HomeScreen,
+    Question: QuestionScreen,
+    Option: OptionScreen,
+    Decision: DecisionScreen,
   },
-});
+  {
+    initialRouteName: 'Home',
+  });
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
